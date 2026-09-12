@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NAS Backup Status Report - 2026-09-12</title>
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; background:#f2f4f7; margin:20px; color:#222; }
+  .report-header { text-align:center; margin-bottom:20px; }
+  h1 { color:#1a3c6e; margin-bottom:2px; }
+  .subtitle { color:#555; margin-top:0; margin-bottom:12px; }
+  .legend { text-align:center; }
+  table { border-collapse: collapse; width:100%; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
+  th, td { border:1px solid #ccc; padding:6px 10px; font-size:13px; text-align:center; }
+  th { background:#1a3c6e; color:#fff; position:sticky; top:0; }
+  td.pathcell { text-align:left; font-family:monospace; font-size:11px; color:#444; }
+  tr:nth-child(even) { background:#f8f9fb; }
+  .section-title { background:#33538c; color:#fff; padding:6px 10px; font-size:15px; margin-top:30px; }
+  .status-ok   { background:#d4edda; color:#155724; font-weight:bold; }
+  .status-bad  { background:#f8d7da; color:#721c24; font-weight:bold; }
+  .status-warn { background:#fff3cd; color:#856404; font-weight:bold; }
+  .status-missing { background:#e2e3e5; color:#383d41; font-weight:bold; }
+  .footer { margin-top:20px; font-size:12px; color:#777; }
+  .legend span { display:inline-block; padding:2px 10px; margin-right:8px; border-radius:3px; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="report-header">
+<h1>NAS Backup Status Report (RMAN &amp; EXPDP)</h1>
+<p class="subtitle">Report Generated: 12-09-2026 17:00:01 &nbsp;|&nbsp; Source NAS: BNK_NEW &nbsp;|&nbsp; Target NAS: BNK (rsync)</p>
+
+<div class="legend">
+  <span class="status-ok">MATCH / FRESH</span>
+  <span class="status-warn">OLD BACKUP</span>
+  <span class="status-bad">MISMATCH / NOT FOUND</span>
+  <span class="status-missing">PATH MISSING</span>
+</div>
+</div>
+
+<div class="section-title">NAS Drive Space Summary</div>
+<table>
+<tr>
+  <th>NAS Drive</th><th>Mount Path</th><th>Total Space</th><th>Used Space</th><th>Free Space</th><th>Utilization %</th>
+</tr>
+<tr>
+  <td>BNK_NEW</td><td class="pathcell">/home/oracle/BNK_NEW</td>
+  <td>98T</td><td>70T</td><td>28T</td>
+  <td class="status-ok">72%</td>
+</tr>
+<tr>
+  <td>BNK</td><td class="pathcell">/home/oracle/BNK</td>
+  <td>100T</td><td>70T</td><td>30T</td>
+  <td class="status-ok">71%</td>
+</tr>
+</table>
+
+<div class="section-title">RMAN Backup Status</div>
+<table>
+<tr>
+  <th>Database</th><th>Type</th>
+  <th>BNK_NEW Path</th><th>BNK_NEW Size</th><th>Files</th><th>Backup Start Date</th><th>Last Backup Date</th><th>Retention (Backups)</th>
+  <th>BNK Path</th><th>BNK Size</th><th>Files</th><th>Backup Start Date</th><th>Last Backup Date</th><th>Retention (Backups)</th>
+  <th>Size Diff</th><th>Sync Status</th><th>Backup Status</th>
+</tr>
+    <tr>
+      <td>VITHAL</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/VITHAL/RMAN_BACKUP</td>
+      <td>3.7T</td>
+      <td>795</td>
+      <td title="Oldest file: RMAN_FULL_08-23-26_19-20-01">23-08-2026 19:20</td>
+      <td>11-09-2026 23:45</td>
+      <td>20</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/VITHAL/RMAN_BACKUP</td>
+      <td>3.7T</td>
+      <td>795</td>
+      <td title="Oldest file: RMAN_FULL_08-23-26_19-20-01">23-08-2026 19:20</td>
+      <td>11-09-2026 23:45</td>
+      <td>20</td>
+      <td>126KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>EAGLE</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/EAGLE/RMAN_BACKUP</td>
+      <td>1.6T</td>
+      <td>149</td>
+      <td title="Oldest file: RMAN_FULL_08-28-26_22-00-01">28-08-2026 22:00</td>
+      <td>11-09-2026 22:00</td>
+      <td>15</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/EAGLE/RMAN_BACKUP</td>
+      <td>1.6T</td>
+      <td>149</td>
+      <td title="Oldest file: RMAN_FULL_08-28-26_22-00-01">28-08-2026 22:00</td>
+      <td>11-09-2026 22:00</td>
+      <td>15</td>
+      <td>91KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>SHIVAY</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/SHIVAY/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>409</td>
+      <td title="Oldest file: RMAN_FULL_08-29-26_22-30-01">29-08-2026 22:30</td>
+      <td>11-09-2026 23:45</td>
+      <td>14</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/SHIVAY/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>409</td>
+      <td title="Oldest file: RMAN_FULL_08-29-26_22-30-01">29-08-2026 22:30</td>
+      <td>11-09-2026 23:45</td>
+      <td>14</td>
+      <td>63KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>VISHNU</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/VISHNU/RMAN_Backup</td>
+      <td>2.8T</td>
+      <td>1161</td>
+      <td title="Oldest file: RMAN_FULL_08-28-26_21-30-01">28-08-2026 21:30</td>
+      <td>11-09-2026 21:30</td>
+      <td>15</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/VISHNU/RMAN_Backup</td>
+      <td>2.8T</td>
+      <td>1161</td>
+      <td title="Oldest file: RMAN_FULL_08-28-26_21-30-01">28-08-2026 21:30</td>
+      <td>11-09-2026 21:30</td>
+      <td>15</td>
+      <td>56KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>MARCOS</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/MARCOS/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>495</td>
+      <td title="Oldest file: RMAN_FULL_08-26-26_21-30-01">26-08-2026 21:30</td>
+      <td>11-09-2026 23:30</td>
+      <td>17</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/MARCOS/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>495</td>
+      <td title="Oldest file: RMAN_FULL_08-26-26_21-30-01">26-08-2026 21:30</td>
+      <td>11-09-2026 23:30</td>
+      <td>17</td>
+      <td>214KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>VIKRAM</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/VIKRAM/RMAN_BACKUP</td>
+      <td>3.8T</td>
+      <td>195</td>
+      <td title="Oldest file: RMAN_FULL_08-25-26_23-55-02">25-08-2026 23:55</td>
+      <td>11-09-2026 23:55</td>
+      <td>18</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/VIKRAM/RMAN_BACKUP</td>
+      <td>3.8T</td>
+      <td>195</td>
+      <td title="Oldest file: RMAN_FULL_08-25-26_23-55-02">25-08-2026 23:55</td>
+      <td>11-09-2026 23:55</td>
+      <td>18</td>
+      <td>72KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>ARYABHAT</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/ARYABHAT/RMAN_BACKUP</td>
+      <td>2.3T</td>
+      <td>2472</td>
+      <td title="Oldest file: RMAN_FULL_08-25-26_23-30-01">25-08-2026 23:30</td>
+      <td>11-09-2026 21:55</td>
+      <td>18</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/ARYABHAT/RMAN_BACKUP</td>
+      <td>2.3T</td>
+      <td>2472</td>
+      <td title="Oldest file: RMAN_FULL_08-25-26_23-30-01">25-08-2026 23:30</td>
+      <td>11-09-2026 21:55</td>
+      <td>18</td>
+      <td>55KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>MERCURY</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/MERCURY/RMAN_BACKUP</td>
+      <td>4.3T</td>
+      <td>255</td>
+      <td title="Oldest file: RMAN_FULL_08-26-26_21-30-01">26-08-2026 21:30</td>
+      <td>11-09-2026 23:35</td>
+      <td>17</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/MERCURY/RMAN_BACKUP</td>
+      <td>4.3T</td>
+      <td>255</td>
+      <td title="Oldest file: RMAN_FULL_08-26-26_21-30-01">26-08-2026 21:30</td>
+      <td>11-09-2026 23:35</td>
+      <td>17</td>
+      <td>58KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>KRISHNA</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/KRISHNA/RMAN_BACKUP</td>
+      <td>2.9T</td>
+      <td>250</td>
+      <td title="Oldest file: RMAN_FULL_08-24-26_22-45-01">24-08-2026 22:45</td>
+      <td>11-09-2026 23:55</td>
+      <td>19</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/KRISHNA/RMAN_BACKUP</td>
+      <td>2.9T</td>
+      <td>250</td>
+      <td title="Oldest file: RMAN_FULL_08-24-26_22-45-01">24-08-2026 22:45</td>
+      <td>11-09-2026 23:55</td>
+      <td>19</td>
+      <td>99KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>KUBER</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/KUBER/RMAN_BACKUP</td>
+      <td>2.9T</td>
+      <td>178</td>
+      <td title="Oldest file: RMAN_FULL_08-27-26_21-30-01">27-08-2026 21:30</td>
+      <td>11-09-2026 23:58</td>
+      <td>16</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/KUBER/RMAN_BACKUP</td>
+      <td>2.9T</td>
+      <td>178</td>
+      <td title="Oldest file: RMAN_FULL_08-27-26_21-30-01">27-08-2026 21:30</td>
+      <td>11-09-2026 23:58</td>
+      <td>16</td>
+      <td>56KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>TIRUPATI</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/TIRUPATI/RMAN_BACKUP</td>
+      <td>2.6T</td>
+      <td>174</td>
+      <td title="Oldest file: RMAN_FULL_08-27-26_21-30-01">27-08-2026 21:30</td>
+      <td>11-09-2026 23:55</td>
+      <td>16</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/TIRUPATI/RMAN_BACKUP</td>
+      <td>2.6T</td>
+      <td>174</td>
+      <td title="Oldest file: RMAN_FULL_08-27-26_21-30-01">27-08-2026 21:30</td>
+      <td>11-09-2026 23:55</td>
+      <td>16</td>
+      <td>56KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>NATRAJ</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/NATRAJ/RMAN_BACKUP</td>
+      <td>2.3T</td>
+      <td>203</td>
+      <td title="Oldest file: RMAN_FULL_08-24-26_21-30-01">24-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>19</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/NATRAJ/RMAN_BACKUP</td>
+      <td>2.3T</td>
+      <td>203</td>
+      <td title="Oldest file: RMAN_FULL_08-24-26_21-30-01">24-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>19</td>
+      <td>66KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>INDRA</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/INDRA/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>171</td>
+      <td title="Oldest file: RMAN_FULL_08-22-26_21-30-01">22-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>21</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/INDRA/RMAN_BACKUP</td>
+      <td>2.4T</td>
+      <td>171</td>
+      <td title="Oldest file: RMAN_FULL_08-22-26_21-30-01">22-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>21</td>
+      <td>73KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>PASHUPATI</td>
+      <td>RMAN</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS2/PASHUPTI/RMAN_BACKUP</td>
+      <td>2.5T</td>
+      <td>185</td>
+      <td title="Oldest file: RMAN_FULL_08-23-26_21-30-01">23-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>20</td>
+      <td class="pathcell">/home/oracle/BNK/NAS2/PASHUPTI/RMAN_BACKUP</td>
+      <td>2.5T</td>
+      <td>185</td>
+      <td title="Oldest file: RMAN_FULL_08-23-26_21-30-01">23-08-2026 21:30</td>
+      <td>11-09-2026 23:10</td>
+      <td>20</td>
+      <td>67KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+</table>
+
+<div class="section-title">EXPDP Backup Status</div>
+<table>
+<tr>
+  <th>Database</th><th>Type</th>
+  <th>BNK_NEW Path</th><th>BNK_NEW Size</th><th>Files</th><th>Backup Start Date</th><th>Last Backup Date</th><th>Retention (Backups)</th>
+  <th>BNK Path</th><th>BNK Size</th><th>Files</th><th>Backup Start Date</th><th>Last Backup Date</th><th>Retention (Backups)</th>
+  <th>Size Diff</th><th>Sync Status</th><th>Backup Status</th>
+</tr>
+    <tr>
+      <td>VITHAL</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/VITHAL/EXPDP_BACKUP</td>
+      <td>623G</td>
+      <td>1035</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_06-51-57">02-08-2026 06:51</td>
+      <td>11-09-2026 01:05</td>
+      <td>30</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/VITHAL/EXPDP_BACKUP</td>
+      <td>623G</td>
+      <td>1037</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_06-51-57">02-08-2026 06:51</td>
+      <td>11-09-2026 01:05</td>
+      <td>30</td>
+      <td>149KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-warn">OLD (39 hrs)</td>
+    </tr>
+    <tr>
+      <td>EAGLE</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/EAGLE/PROD_EXPDP</td>
+      <td>2.5T</td>
+      <td>1172</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_20-21-38">02-08-2026 20:21</td>
+      <td>12-09-2026 05:43</td>
+      <td>24</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/EAGLE/PROD_EXPDP</td>
+      <td>2.5T</td>
+      <td>1173</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_20-21-38">02-08-2026 20:21</td>
+      <td>12-09-2026 05:43</td>
+      <td>24</td>
+      <td>1.8GB</td>
+      <td class="status-ok">MATCH (~0.07% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>SHIVAY</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/SHIVAY/DATAPUMP</td>
+      <td>2.4T</td>
+      <td>1703</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_23-23-15">01-08-2026 23:23</td>
+      <td>10-09-2026 03:30</td>
+      <td>30</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/SHIVAY/DATAPUMP</td>
+      <td>2.4T</td>
+      <td>1705</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_23-23-15">01-08-2026 23:23</td>
+      <td>10-09-2026 03:30</td>
+      <td>30</td>
+      <td>108KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-warn">OLD (61 hrs)</td>
+    </tr>
+    <tr>
+      <td>VISHNU</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/VISHNU/PROD_EXPDP</td>
+      <td>3.4T</td>
+      <td>755</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_19-36-09">03-08-2026 19:36</td>
+      <td>12-09-2026 02:09</td>
+      <td>28</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/VISHNU/PROD_EXPDP</td>
+      <td>3.4T</td>
+      <td>789</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_19-36-09">03-08-2026 19:36</td>
+      <td>12-09-2026 02:09</td>
+      <td>28</td>
+      <td>1.5GB</td>
+      <td class="status-ok">MATCH (~0.04% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>MARCOS</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/MARCOS/PROD_EXPDP</td>
+      <td>1.3T</td>
+      <td>4038</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_01-17-55">02-08-2026 01:17</td>
+      <td>11-09-2026 23:55</td>
+      <td>36</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/MARCOS/PROD_EXPDP</td>
+      <td>1.3T</td>
+      <td>4214</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_01-17-55">02-08-2026 01:17</td>
+      <td>11-09-2026 23:55</td>
+      <td>36</td>
+      <td>3.0GB</td>
+      <td class="status-ok">MATCH (~0.22% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>VIKRAM</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/VIKRAM/PROD_EXPDP</td>
+      <td>5.7T</td>
+      <td>482</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_04-36-15">01-08-2026 04:36</td>
+      <td>12-09-2026 04:38</td>
+      <td>25</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/VIKRAM/PROD_EXPDP</td>
+      <td>5.7T</td>
+      <td>483</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_04-36-15">01-08-2026 04:36</td>
+      <td>12-09-2026 04:38</td>
+      <td>25</td>
+      <td>77KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>ARYABHAT</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/ARYABHAT/PROD_EXPDP</td>
+      <td>2.1T</td>
+      <td>1862</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_06-47-04">03-08-2026 06:47</td>
+      <td>12-09-2026 07:06</td>
+      <td>29</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/ARYABHAT/PROD_EXPDP</td>
+      <td>2.1T</td>
+      <td>1894</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_06-47-04">03-08-2026 06:47</td>
+      <td>12-09-2026 07:06</td>
+      <td>31</td>
+      <td>11MB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>MERCURY</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/MERCURY/PROD_EXPDP</td>
+      <td>1.9T</td>
+      <td>3361</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_04-10-49">01-08-2026 04:10</td>
+      <td>12-09-2026 04:13</td>
+      <td>37</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/MERCURY/PROD_EXPDP</td>
+      <td>1.9T</td>
+      <td>3366</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_04-10-49">01-08-2026 04:10</td>
+      <td>12-09-2026 04:13</td>
+      <td>37</td>
+      <td>791MB</td>
+      <td class="status-ok">MATCH (~0.04% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>KRISHNA</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/KRISHNA/PROD_EXPDP</td>
+      <td>7.3T</td>
+      <td>4572</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_06-10-39">01-08-2026 06:10</td>
+      <td>12-09-2026 06:44</td>
+      <td>43</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/KRISHNA/PROD_EXPDP</td>
+      <td>7.3T</td>
+      <td>4573</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-01-26_06-10-39">01-08-2026 06:10</td>
+      <td>12-09-2026 06:44</td>
+      <td>43</td>
+      <td>797MB</td>
+      <td class="status-ok">MATCH (~0.01% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>KUBER</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/KUBER/PROD_EXPDP</td>
+      <td>1012G</td>
+      <td>1784</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_01-15-53">03-08-2026 01:15</td>
+      <td>10-09-2026 06:25</td>
+      <td>25</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/KUBER/PROD_EXPDP</td>
+      <td>1012G</td>
+      <td>1785</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-03-26_01-15-53">03-08-2026 01:15</td>
+      <td>10-09-2026 06:25</td>
+      <td>25</td>
+      <td>81KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-warn">OLD (58 hrs)</td>
+    </tr>
+    <tr>
+      <td>TIRUPATI</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/TIRUPATI/PROD_EXPDP</td>
+      <td>731G</td>
+      <td>1836</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_12-21-40">02-08-2026 12:21</td>
+      <td>10-09-2026 06:10</td>
+      <td>24</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/TIRUPATI/PROD_EXPDP</td>
+      <td>731G</td>
+      <td>1837</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_12-21-40">02-08-2026 12:21</td>
+      <td>10-09-2026 06:10</td>
+      <td>24</td>
+      <td>78KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-warn">OLD (58 hrs)</td>
+    </tr>
+    <tr>
+      <td>NATRAJ</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/NATRAJ/PROD_EXPDP</td>
+      <td>1.2T</td>
+      <td>1697</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_02-45-48">02-08-2026 02:45</td>
+      <td>11-09-2026 01:15</td>
+      <td>36</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/NATRAJ/PROD_EXPDP</td>
+      <td>1.2T</td>
+      <td>1697</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_02-45-48">02-08-2026 02:45</td>
+      <td>11-09-2026 01:15</td>
+      <td>36</td>
+      <td>92KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-warn">OLD (39 hrs)</td>
+    </tr>
+    <tr>
+      <td>INDRA</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/INDRA/PROD_EXPDP</td>
+      <td>1.6T</td>
+      <td>374</td>
+      <td title="Oldest file: EXPDP_BACKUP_07-13-26_06-07-33">13-07-2026 06:07</td>
+      <td>12-09-2026 06:07</td>
+      <td>15</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/INDRA/PROD_EXPDP</td>
+      <td>1.6T</td>
+      <td>374</td>
+      <td title="Oldest file: EXPDP_BACKUP_07-13-26_06-07-33">13-07-2026 06:07</td>
+      <td>06-09-2026 06:07</td>
+      <td>14</td>
+      <td>41KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+    <tr>
+      <td>PASHUPATI</td>
+      <td>EXPDP</td>
+      <td class="pathcell">/home/oracle/BNK_NEW/NAS/PASHUPTI/PROD_EXPDP</td>
+      <td>425G</td>
+      <td>386</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_06-07-33">02-08-2026 06:07</td>
+      <td>12-09-2026 06:07</td>
+      <td>13</td>
+      <td class="pathcell">/home/oracle/BNK/NAS/PASHUPTI/PROD_EXPDP</td>
+      <td>425G</td>
+      <td>386</td>
+      <td title="Oldest file: EXPDP_BACKUP_08-02-26_06-07-33">02-08-2026 06:07</td>
+      <td>06-09-2026 06:07</td>
+      <td>12</td>
+      <td>32KB</td>
+      <td class="status-ok">MATCH (~0.00% diff)</td>
+      <td class="status-ok">TODAY / FRESH</td>
+    </tr>
+</table>
+<p class="footer">Auto-generated by nas_backup_report.sh on orarestoredb &nbsp;|&nbsp; FRESH_HOURS threshold = 24 hrs</p>
+</body>
+</html>
